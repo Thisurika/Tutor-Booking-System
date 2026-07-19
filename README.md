@@ -1,203 +1,83 @@
-# E-Class
-This Tutor Management System helps manage tutors, students, schedules, and sessions in one platform. It streamlines tutor registration, session booking, progress tracking, and communication, making the learning process more organized and efficient.
+# Tutor Booking System
+
+A web application for students to book sessions with tutors.
+
+---
+
+## 🔑 Default Administrator Credentials
+
+Use the following credentials to log in as an administrator:
+
+> [!IMPORTANT]
+> **Default Admin Login:**
+> - **Email:** `admin@gmail.com`
+> - **Password:** `123`
+
+---
 
 ## Features
 
-### 1. Admin Management
-- **Add Admin** (`add-admins.jsp`, `AddAdminServlet.java`)
-- **Edit Admin** (`update-admin.jsp`, `UpdateAdminServlet.java`)
-- **Delete Admin** (`view-admin.jsp`, `ViewAdminServlet.java`, `DeleteAdminServlet.java`)
-- **Data Storage**: `admins.txt`
-- **Admin Class**:
-  ```java
-  class Admin {
-      String ID;
-      String Email;
-      String Name;
-      String ContactNo;
-      String Password;
-  }
-  ```
-- Uses `ArrayList<Admin>` to store admins:
-  ``` java
-  ArrayList<Admin> admins = new ArrayList<Admin>();
-  ```
+### For Students
+- **User Registration and Login:** Secure registration and authentication system.
+- **Profile Management:** View and update personal details.
+- **Book Tutors:** Browse and book available tutors for sessions.
+- **Booking Management:** Cancel bookings or edit booked times.
+- **Payments:** Make payments and view payment history.
+- **Reviews:** Write reviews for tutors.
 
-### 2. User Management
-- **User Registration** (`user-register.jsp`, `UserRegisterServlet.java`)
-- **User Login** (`user-login.jsp`, `UserLoginServlet.java`)
-- **User Profile** (`user-profile.jsp`, `UserProfileServlet.java`)
-- **Data Storage**: `users.txt`
-- **User Class**:
-  ```java
-  class User{
-      String ID;
-      String Email;
-      String Name;
-      int Age;
-      String ContactNo;
-      String Gender;
-      String Password;
-  }
-  ```
+### For Admin
+- **Admin Dashboard:** Centralized panel to manage users, tutors, bookings, payments, reviews, and admins.
+  - **User Management:** Delete users.
+  - **Tutor Management:** Add, remove, or edit tutor profiles.
+  - **Review Management:** Delete inappropriate reviews.
+  - **Payment Management:** View all payment transactions.
+  - **Admin Management:** Create new admins or remove existing admins.
+  - **Booking Management:** View all bookings.
 
-- Uses `ArrayList<User>` to store users:
-    ```java
-    ArrayList<User> users = new ArrayList<User>();
-    ```
+## Technology Stack
 
+- **Backend:** Java Servlets
+- **Frontend:** JSP, CSS
+- **Database:** Plain text files (for development simplicity)
 
-### 3. Tutor Management (Hard :l )
-- **Add Tutor** (`add-tutor.jsp`, `AddTutorServlet.java`)
-- **Edit Tutor** (`update-tutor.jsp`, `UpdateTutorServlet.java`)
-- **Delete Tutor** (`view-tutors.jsp`, `ViewTutorServlet.java`, `DeleteTutorServlet.java`)
-- **Data Storage**: `tutors.txt`
-- **Tutor Class**:
-  ```java
-  class Tutor extends User {
-      String ID;
-      String Email;
-      String Name;
-      int Age;
-      String Gender;
-      String Subject;
-      int RatingLevel;
-      String Password;
-      String ContactNo;
-      String CostPerHour;
-  }
-  ```
+## UML Diagram
 
-#### DSA part (WE HAVE TO APPLY)
-- Use Binary Tree to save all tutors.
-- Implement Merge Sort to sort tutors.
-- Need to implement Binary Tree manually and use it for storing tutors.
+<picture> <source media="(prefers-color-scheme: dark)" srcset="UML%20diagram/UML%20diagram-dark.png"> <img src="UML%20diagram/UML%20diagram-light.png"> </picture> 
 
+- Open: <a href="UML%20diagram/UML%20diagram.drawio">Draw IO</a>
+- Open: <a href="UML%20diagram/UML%20diagram.docx">Microsoft Word</a>
 
-### 4. Booking Management
-- **Book a Tutor** (`booking-tutor.jsp`, `BookTutorServlet.java`)
-- **Edit Booking** (`update-book.jsp`, `UpdateBookingServlet.java`)
-- **Delete Booking** (`view-booking.jsp`, `DeleteBookingServlet.java`)
-- **Data Storage**: `bookings.txt`
-- **Booking Class**:
-  ``` java
-  class Booking {
-      String ID;
-      String UserID;
-      String TutorID;
-      String Time;
-      String Date;
-      int Hours;
-  }
-  ```
-- Uses ArrayList<Booking> to store bookings:
-  ``` java
-  ArrayList<Booking> bookings = new ArrayList<Booking>();
-  ```
-  
+## Getting Started
 
-### 5. Review Management
-- **Add Review** (`add-review.jsp`, `AddReviewServlet.java`)
-- **Delete Review** (`view-review.jsp`, `DeleteReviewServlet.java`)
-- **Data Storage**: `reviews.txt`
-- **Review Class**:
-  ``` java
-  class Review {
-      int ID;
-      int UserID;
-      int TutorID;
-      String ReviewMessage;
-      int rating;
-      String date;
-  }
-  ```
-- Uses ArrayList<Review> to store Reviews:
-    ```java 
-    ArrayList<Review> reviews = new ArrayList<Review>();
-    ```
+### Prerequisites
 
+- Java Development Kit (JDK), version 23 or higher (specified in pom.xml)
+- Apache Tomcat or similar Java servlet container
 
-### 6. Payment History
-- **Create Payment on Booking** (`payment.jsp`, `PayServlet.java`)
-- **View Payments** (`view-payments.jsp`, `ViewPaymentsServlet.java`)
-- **Data Storage**: `payments.txt`
-- **Payment Class**:
-  ``` java
-  class Review {
-      int ID;
-      int TutorID;
-      int UserID;
-      String Time;
-      String Date;
-      double cost;
-  }
-  ```
-- Uses ArrayList<Payment> to store Payment:
-    ```java 
-    ArrayList<Payment> payments = new ArrayList<Payment>();
-    ```
+### Setup Instructions
 
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Thisal-D/Tutor-Booking-System.git
+   ```
 
-### File Handling
-- To handle file read and write operations, use `FileHandler.java`, located in: `/src/main/java/com/example/demo/utils`
+2. **Import into your IDE:**
+   - Open your favorite Java IDE (e.g., IntelliJ IDEA, Eclipse).
+   - Import the project as an existing Maven or Java web project.
 
-- This class contains 4 methods, but you only need to use the following 2:
+3. **Configure Servlet Container:**
+   - Deploy the project to Apache Tomcat or your preferred servlet container.
 
-```java
-// Write new data to a file
-public static boolean writeToFile(String fileName, boolean append, String data);
-```
+4. **Run the application:**
+   - Start your servlet container.
+   - Access the application in your browser at `http://localhost:8080/Tutor-Booking-System`
 
-```java
-// Read the entire content of a file line by line into a string array
-public static String[] readFromFile(String fileName);
-```
+### File-based Database
 
+This project uses plain text files to store user, tutor, booking, payment, admin and review data. Ensure the application has write permissions to these files.
 
-To use the `writeToFile` and `readFromFile` methods from `FileHandler.java` in another file, follow these steps:
+### Usage
 
-#### 1. Writing Data to a File
-To save data in a file, call `writeToFile` as shown below:
-
-```java
-import com.example.demo.utils.FileHandler;
-
-public class ExampleWrite {
-    public static void main(String[] args) {
-        String fileName = "users.txt";
-        String data = "U001, user1@example.com, John Doe, 25, 1234567890, Male, password123";
-
-        boolean isWritten = FileHandler.writeToFile(fileName, true, data);
-        
-        if (isWritten) {
-            System.out.println("Data successfully written to " + fileName);
-        } else {
-            System.out.println("Failed to write data.");
-        }
-    }
-}
-```
-
-#### 2. Reading Data from a File
-To read data from a file, use readFromFile:
-
-```java
-import com.example.demo.utils.FileHandler;
-
-public class ExampleRead {
-    public static void main(String[] args) {
-        String fileName = "users.txt";
-
-        String[] users = FileHandler.readFromFile(fileName);
-
-        if (users.length > 0) {
-            System.out.println("Data from " + fileName + ":");
-            for (String user : users) {
-                System.out.println(user);
-            }
-        } else {
-            System.out.println("No data found in " + fileName);
-        }
-    }
-}
-```
+- Register or log in as a student (user) to book sessions.
+- Log in as an admin to access management features.
+- Use the dashboard to manage users, tutors, and bookings.
